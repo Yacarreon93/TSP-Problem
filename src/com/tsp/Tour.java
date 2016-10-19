@@ -14,11 +14,10 @@ public class Tour {
     private ArrayList<City> tour = new ArrayList<>();
     // assumes initial value of distance = 0
     private int distance = 0;
-    private final int NUMBER_OF_CITIES = 10;
     
     // starts a void tour
     public Tour() {        
-        for (int i = 0; i < NUMBER_OF_CITIES; i++) {
+        for (int i = 0; i < TourManager.numberOfCities(); i++) {
             tour.add(null);
         }
     }
@@ -49,7 +48,7 @@ public class Tour {
      */
     public void generateIndividual() {
         // loop through all destination cities and add them to tour
-        for (int cityIndex = 0; cityIndex < NUMBER_OF_CITIES; cityIndex++) {
+        for (int cityIndex = 0; cityIndex < TourManager.numberOfCities(); cityIndex++) {
             setCity(cityIndex, TourManager.getCity(cityIndex));
         }
         // randomly reorder the tour
@@ -70,7 +69,7 @@ public class Tour {
      * @param index
      * @param city
      */
-    public void getCity(int index, City city) {
+    public void setCity(int index, City city) {
         tour.set(index, city);
         // because the tour has been altered we need to reset the fitness and distance
         distance = 0;
@@ -118,7 +117,7 @@ public class Tour {
      */    
     public String toString() {
         String s = getCity(0).getName();
-        for (int cityIndex = 1; cityIndex < NUMBER_OF_CITIES; cityIndex++) {
+        for (int cityIndex = 1; cityIndex < TourManager.numberOfCities(); cityIndex++) {
             s += " -> " + getCity(cityIndex).getName();
         }
         return s;
