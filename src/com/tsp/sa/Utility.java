@@ -37,7 +37,7 @@ public class Utility {
      * Returns a random double value between 0 and 1 inclusive 
      * @return 
      */
-    public double randomDouble() {
+    public static double randomDouble() {
         Random r = new Random();
         return r.nextInt(1000) / 1000.0;
     }
