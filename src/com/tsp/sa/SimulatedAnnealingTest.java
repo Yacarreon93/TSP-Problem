@@ -38,9 +38,9 @@ public class SimulatedAnnealingTest {
         currenSolution.generateIndividual();
         
         System.out.println("Tour: " + currenSolution);
-        System.out.println("Total distance of initial solution " + currenSolution.getDistance());
+        System.out.println("Total distance of initial solution " + currenSolution.getTotalDistance());
         
-        // Assume best solution is the current solution
+        // assume best solution is the current solution
         Tour bestSolution = new Tour(currenSolution.getTour());
         
         // loop until system has cooled
@@ -57,9 +57,13 @@ public class SimulatedAnnealingTest {
             City citySwap1 = newSolution.getCity(tourPos1);
             City citySwap2 = newSolution.getCity(tourPos2);
             
+            // swap cities
+            newSolution.setCity(tourPos2, citySwap1);
+            newSolution.setCity(tourPos1, citySwap2);
+            
             // get energy of solutions
-            int currentDistance = currenSolution.getDistance();
-            int neighborDistance = newSolution.getDistance();
+            int currentDistance = currenSolution.getTotalDistance();
+            int neighborDistance = newSolution.getTotalDistance();
             
             // decide if accept the negihbor 
             double rand = Utility.randomDouble();
@@ -68,7 +72,7 @@ public class SimulatedAnnealingTest {
             }
             
             // keep track of the best solution found
-            if(currenSolution.getDistance() < bestSolution.getDistance()) {
+            if(currenSolution.getTotalDistance() < bestSolution.getTotalDistance()) {
                 bestSolution = new Tour(currenSolution.getTour());
             }
             
@@ -77,7 +81,7 @@ public class SimulatedAnnealingTest {
             
         }                        
         System.out.println("The best solution is: " + bestSolution);
-        System.out.println("Total distance of best solution " + bestSolution.getDistance());
+        System.out.println("Total distance of best solution " + bestSolution.getTotalDistance());
     }
     
 }
