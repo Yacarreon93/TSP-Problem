@@ -91,7 +91,7 @@ public class Tour {
                 City destinationCity;
                 // check if we are not in the tour's last city, if we are set 
                 // the tour's final destination to the tour's starting city
-                if(cityIndex + 1 == tourSize()) {
+                if(cityIndex + 1 != tourSize()) {
                     destinationCity = getCity(cityIndex + 1);
                 } else {
                     destinationCity = getCity(0);
